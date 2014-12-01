@@ -2,7 +2,7 @@ window.onload = function () {
   paper.setup('myCanvas');
   var p = paper;
   var tool = new p.Tool();
-  console.log( p.view)
+  console.log(p.view)
   // path = new p.Path();
   // path.strokeColor = 'black';
   tool.onMouseDown= function (event) {
