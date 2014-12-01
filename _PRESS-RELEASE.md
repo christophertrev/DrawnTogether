@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Head to Head Drawing
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Players complete to outline the picture under pressure.
+  
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  This game will give two or more players a template that theywill have to out line. The computer will then give them a score based on who had the better outline. This encorages artistic development as well as fun fulled competition.
 
 ## Problem ##
   > Describe the problem your product solves.
+  Fills in the niche of web gaming
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Allows users to go head to head at drawing.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "I really love the game. Lets me really flex my artistic muscles with friends."
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  "just open up the webpage and press new game. This will enter you into a new game with players from around the world."
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "I really loved the game, very simple and easy to use. Great fun all around."
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
