@@ -1,0 +1,10 @@
+Notes:
+Ideas: 
+	Take water data from us Gov and display it somehow
+	Take github and other api data to show time line of world events encorage developemnt
+	JSON + api visualizer ?
+	Commit tracker outside of Git Hub
+	Whats hot in Git hub
+		Show what projects or what technologies are being added the quickest
+	Game with websockets?
+	
