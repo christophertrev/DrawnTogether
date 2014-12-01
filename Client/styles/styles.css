@@ -3,5 +3,7 @@ body {
 }
 
 canvas {
-  background-color: white
+  background-color: white;
+  height: 200px;
+  width: 80%;
 }
