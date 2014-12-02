@@ -42,13 +42,13 @@ angular.module('ct-draw',[
     // paper.install(window);
     // paper.setup('myCanvas');
     paper = paperFac.myPaper;
-    var r = new paper.Raster('cat')
-    r.position = paper.view.center;
-    r.on('load',function(){
-      r.size = new paper.Size(600,400)
-      $scope.baseColor = r.getAverageColor().toString()
-      $scope.$apply()
-    })
+    // var r = new paper.Raster('cat')
+    // r.position = paper.view.center;
+    // r.on('load',function(){
+    //   r.size = new paper.Size(600,400)
+    //   $scope.baseColor = r.getAverageColor().toString()
+    //   $scope.$apply()
+    // })
   }
 
   $scope.deactivate =function (){
@@ -123,7 +123,26 @@ angular.module('ct-draw',[
   papers.notMyPaper = new paper.PaperScope();
 
   papers.myPaper.setup('myCanvas');
-  papers.notMyPaper.setup('notMyCanvas');
+
+  //adding image to both
+  paper = papers.notMyPaper;
+  paper.setup('notMyCanvas');
+  // var r = new paper.Raster('cat')
+  // r.position = paper.view.center;
+  // r.on('load',function(){
+  //   r.size = new paper.Size(600,400)
+  //   // $scope.baseColor = r.getAverageColor().toString()
+  //   // $scope.$apply()
+  // })
+  paper = papers.myPaper;
+  var r = new paper.Raster('cat')
+  r.position = paper.view.center;
+  r.on('load',function(){
+    r.size = new paper.Size(600,400)
+    // $scope.baseColor = r.getAverageColor().toString()
+    // $scope.$apply()
+  })
+  // paper = papers.myPaper;
 
   return papers;
 
