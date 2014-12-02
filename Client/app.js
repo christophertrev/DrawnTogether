@@ -10,32 +10,13 @@ angular.module('ct-draw',[
 //         controller:
 //       })
 // })
-.controller('stats', function ($scope, $document){
+.controller('stats', function ($scope, $document, canvasFuncs){
   var path;
   // { red: 0.96558, green: 0.96558, blue: 0.96558 }
   $scope.score = 0; 
   $scope.baseColor= '...Calculating Score'
   $scope.finalScore='...finalScore!'
-  var drag = false;
-  function mouseUp(event) {
-      drag = false;
-  }
-
-  function mouseDrag(event) {
-    if (drag) {
-        path.add(new paper.Point(event.point));
-        path.smooth();
-    }
-  }
-
-  function mouseDown(event) {
-    drag = true;
-    path = new paper.Path();
-    path.strokeColor = 'black';
-    path.strokeWidth = 10;
-    path.add(new paper.Point(event.point));
-  }
-
+  angular.extend($scope,canvasFuncs)
   function initPaper() {
     paper.install(window);
     paper.setup('myCanvas');
@@ -77,14 +58,34 @@ angular.module('ct-draw',[
     tool.activate();
   
   };
-  function getScore(){
-
-  }
 
   initPaper();
   var tool = new Tool(); 
-  tool.onMouseDown = mouseDown;
-  tool.onMouseDrag = mouseDrag;
-  tool.onMouseup = mouseUp;
+  tool.onMouseDown = $scope.mouseDown;
+  tool.onMouseDrag = $scope.mouseDrag;
+  tool.onMouseup = $scope.mouseUp;
   tool.activate();
+})
+.factory('canvasFuncs', function(){
+  var obj = {};
+  var drag = false;
+  obj.mouseUp = function (event) {
+      drag = false;
+  }
+
+  obj.mouseDrag = function (event) {
+    if (drag) {
+        path.add(new paper.Point(event.point));
+        path.smooth();
+    }
+  }
+
+  obj.mouseDown = function(event) {
+    drag = true;
+    path = new paper.Path();
+    path.strokeColor = 'black';
+    path.strokeWidth = 10;
+    path.add(new paper.Point(event.point));
+  }
+  return obj
 })
