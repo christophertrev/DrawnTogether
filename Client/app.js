@@ -138,7 +138,7 @@ angular.module('ct-draw',[
   var r = new paper.Raster('cat')
   r.position = paper.view.center;
   r.on('load',function(){
-    r.size = new paper.Size(600,400)
+    r.size = new paper.Size(500,300)
     // $scope.baseColor = r.getAverageColor().toString()
     // $scope.$apply()
   })
