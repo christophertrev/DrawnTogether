@@ -12,6 +12,10 @@ angular.module('ct-draw',[
 // })
 .controller('stats', function ($scope, $document){
   var path;
+  // { red: 0.96558, green: 0.96558, blue: 0.96558 }
+  $scope.score = 0; 
+  $scope.baseColor= '...Calculating Score'
+  $scope.finalScore='...finalScore!'
   var drag = false;
   function mouseUp(event) {
       drag = false;
@@ -36,14 +40,14 @@ angular.module('ct-draw',[
     paper.install(window);
     paper.setup('myCanvas');
     var r = new Raster('cat')
+    
     r.position = view.center;
     r.on('load',function(){
       
     r.size = new Size(300,200)
+    $scope.baseColor = r.getAverageColor().toString()
+    $scope.$apply()
     })
-    // r = new paper.Rectangle(new Point(0,0),paper.view.size)
-    // rect = new paper.Path.Rectangle(r)
-    // rect.fillColor='white'
   }
 
   $scope.deactivate =function (){
@@ -53,23 +57,29 @@ angular.module('ct-draw',[
   };
   $scope.inspect = function (){
     console.log('inspecting!')
-     var raster = project.activeLayer.rasterize()
+    var raster = project.activeLayer.rasterize()
     var path = new paper.Path.Circle({
-    center: [50, 50],
-    radius: 30,
-    strokeColor: 'white'
+      center: [50, 50],
+      radius: 30,
+      strokeColor: 'white'
     });
     
     paper.view.draw();
 
     function onMouseMove(event) {
-      console.log(raster.getAverageColor(event.point))
+      console.log(raster.getAverageColor().toString())
       path.fillColor = raster.getAverageColor(event.point);
+      $scope.finalScore = raster.getAverageColor().toString()
+      $scope.$apply();
     }
     var tool = new Tool();
     tool.onMouseMove = onMouseMove;
     tool.activate();
+  
   };
+  function getScore(){
+
+  }
 
   initPaper();
   var tool = new Tool(); 
