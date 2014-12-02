@@ -50,7 +50,6 @@ angular.module('ct-draw',[
     $scope.oppReady = true; 
     if( $scope.ready ){
       $scope.ableStart = true;
-      $scope.go = true;
       $scope.startGame();
     }
     $scope.$apply();
@@ -59,17 +58,27 @@ angular.module('ct-draw',[
     paper = paperFac.myPaper;
   }
   $scope.startGame = function (){
-    console.log('starting game');
+    console.log('starting countdown');
     $scope.timer =  60; 
-    var intID = $interval(function (){
-      $scope.startDrawing()
-      $scope.timer--;
-      console.log($scope.timer);
-      if($scope.timer === 0 ){
-        $interval.cancel(intID);
-        $scope.deactivate();
+    $scope.st = 3;
+    var intSt = $interval( function () {
+      $scope.st--
+      if ($scope.st === 0){
+        $interval.cancel(intSt);
+        var intID = $interval(function (){
+          $scope.go = true;
+          console.log('starting Game')
+          $scope.startDrawing()
+          $scope.timer--;
+          console.log($scope.timer);
+          if($scope.timer === 0 ){
+            $interval.cancel(intID);
+            $scope.deactivate();
+          }
+        },100);       
+        
       }
-    },100); 
+    },1000)
   };
 
 
@@ -99,7 +108,7 @@ angular.module('ct-draw',[
     socket.emit('ready!',event.point)
     if($scope.oppReady){
       $scope.ableStart = true;
-      $scope.go = true; 
+      // $scope.go = true; 
       $scope.startGame();
       // $scope.apply();
     }  

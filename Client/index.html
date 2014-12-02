@@ -31,25 +31,28 @@
 	<!-- <canvas id="myCanvas"  draw></canvas> -->
 	<!-- <draw > </draw> -->
 	<div ng-show='oppReady' class='page-header'>
-	<h1>Opponent is Ready</h1>
-	<h1 ng-show='go'>Start!</h1>
+
+	  <h1>Opponent is Ready</h1>
+	  <div >
+	    <h1>Time Left: {{ timer }}</h1>
+	  </div>
+	  <h1> Start in {{st}}</h1>
+	  <h1 ng-show='go'>Start!</h1>
 	</div>
 	<canvas id="myCanvas" ></canvas>
 	<canvas id="notMyCanvas" ></canvas>
 	<img ng-hide='true' id='cat' src='pics/cat1.gif'>
 <!-- 	<img class='brand' src='pics/truthbomb.gif'> -->
 	<div class='row'>
-	<div class='btn-group btn-group-lg col-xs-offset-4'>
-	  <button  class='btn btn-danger' ng-disabled='ready' ng-click='sendReady()'>Ready?</button>
-	  <!-- <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button> -->
+		<div class='btn-group btn-group-lg col-xs-offset-4'>
+		  <button  class='btn btn-danger' ng-disabled='ready' ng-click='sendReady()'>Ready?</button>
+		  <!-- <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button> -->
+		</div>
 	</div>
-	</div>
-	<div ng-click='startDrawing()'>Draw!</div>
+<!-- 	<div ng-click='startDrawing()'>Draw!</div>
 	<div ng-click='deactivate()'>Stop drawing</div>
-	<div ng-click='inspect()'>Inspect!</div>
-	<div >
-		Time Left: {{ timer }}
-	</div><div >
+	<div ng-click='inspect()'>Inspect!</div> -->
+<!-- 	<div >
 		base Color: {{ baseColor }}
 	</div>
 	<div>
@@ -57,7 +60,7 @@
 	</div>
 	<div>
 		final Score: {{fillcolor}}
-	</div>
+	</div> -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

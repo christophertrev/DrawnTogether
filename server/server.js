@@ -23,10 +23,6 @@ io.on('connection',function (socket){
   })
 })
 
-
-
-
-
 module.exports = function(){
   http.listen(app.get('port'), function(){
     console.log('listening on ', app.get('port'));
