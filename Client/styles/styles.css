@@ -7,9 +7,17 @@ canvas {
   /*background-image: url(../pics/cat1.gif)*/
   height: 300px;
   width: 500px;
+  border-style: solid;
+  border-color: grey;
 }
 
 img {
   height: 400px;
   width: 600px;
 }
+
+.brand {
+  height: 40px;
+  width: 40px;
+}
+

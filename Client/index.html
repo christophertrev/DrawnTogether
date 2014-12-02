@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app='ct-draw'>
 <head>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="bower_components/paper/dist/paper-full.js"></script>
@@ -11,12 +12,28 @@
 <!-- Define inlined PaperScript associate it with myCanvas -->
 </head>
 <body ng-controller='stats'>
-	<h1>Draw Together!</h1>
+	<nav class='navbar navbar-inverse' role='navigation'>
+      <div class="container-fluid">
+        <div class='navbar-header'>         
+           <a class='navbar-brand' href="#">
+            <img class='brand' src='pics/truthbomb.gif'>
+           </a>
+        </div>
+        <!-- <div class='navbar-collapse collapse'> -->
+          <ul class='nav navbar-nav '>
+           <li><h1 class='navbar-text'>Draw Together!</h1> </li>
+          </ul>
+        <!-- </div> -->
+      </div>
+    </nav>
+	<!-- <h1>Draw Together!</h1> -->
 	<!-- <canvas id="myCanvas"  draw></canvas> -->
 	<!-- <draw > </draw> -->
+	
 	<canvas id="myCanvas" ></canvas>
 	<canvas id="notMyCanvas" ></canvas>
 	<img ng-hide='true' id='cat' src='pics/cat1.gif'>
+<!-- 	<img class='brand' src='pics/truthbomb.gif'> -->
 	<div ng-click='startDrawing()'>Draw!</div>
 	<div ng-click='deactivate()'>Stop drawing</div>
 	<div ng-click='inspect()'>Inspect!</div>
@@ -29,5 +46,6 @@
 	<div>
 		final Score: {{fillcolor}}
 	</div>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
