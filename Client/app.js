@@ -28,16 +28,22 @@ angular.module('ct-draw',[
     drag = true;
     path = new paper.Path();
     path.strokeColor = 'black';
-    path.strokeWidth = 10;
+    path.strokeWidth = 5;
     path.add(new paper.Point(event.point));
   }
 
   function initPaper() {
     paper.install(window);
     paper.setup('myCanvas');
-    r = new paper.Rectangle(new Point(0,0),paper.view.size)
-    rect = new paper.Path.Rectangle(r)
-    rect.fillColor='red'
+    var r = new Raster('cat')
+    r.position = view.center;
+    r.on('load',function(){
+      
+    r.size = new Size(300,200)
+    })
+    // r = new paper.Rectangle(new Point(0,0),paper.view.size)
+    // rect = new paper.Path.Rectangle(r)
+    // rect.fillColor='white'
   }
 
   $scope.deactivate =function (){
