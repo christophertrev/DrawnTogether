@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="bower_components/paper/dist/paper-full.js"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="canvas.js"></script>
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -34,10 +35,15 @@
 	<canvas id="notMyCanvas" ></canvas>
 	<img ng-hide='true' id='cat' src='pics/cat1.gif'>
 <!-- 	<img class='brand' src='pics/truthbomb.gif'> -->
+	<div class='row'>
+	<div class='btn-group btn-group-lg col-xs-offset-4'>
+	  <button  class='btn btn-danger' ng-disabled='!ready' ng-click='sendReady()'>Ready?</button>
+	  <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button>
+	</div>
+	</div>
 	<div ng-click='startDrawing()'>Draw!</div>
 	<div ng-click='deactivate()'>Stop drawing</div>
 	<div ng-click='inspect()'>Inspect!</div>
-	<button ng-click='startGame()'>START</button>
 	<div >
 		Time Left: {{ timer }}
 	</div><div >

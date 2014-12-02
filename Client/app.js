@@ -14,6 +14,8 @@ angular.module('ct-draw',[
   var path;
   // { red: 0.96558, green: 0.96558, blue: 0.96558 }
   $scope.score = 0; 
+  $scope.ready = true;
+  $scope.ableStart = false;
   $scope.baseColor= '...Calculating Score'
   $scope.finalScore='...finalScore!'
   console.log(paperFac);
@@ -36,6 +38,10 @@ angular.module('ct-draw',[
     pathother.smooth();
     paper.view.draw()
     paper = paperFac.myPaper;
+  })
+  socket.on('ready!', function (stuff) { 
+    //make start available
+    $scope.ableStart = true;
   })
   function initPaper() {
     paper = paperFac.myPaper;
@@ -75,6 +81,10 @@ angular.module('ct-draw',[
     tool.onMouseMove = onMouseMove;
     tool.activate();
   };
+  
+  $scope.sendReady = function () {
+    socket.emit('ready!',event.point)
+  }
 
   initPaper();
 })
