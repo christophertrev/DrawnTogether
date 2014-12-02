@@ -17,6 +17,21 @@ angular.module('ct-draw',[
   $scope.baseColor= '...Calculating Score'
   $scope.finalScore='...finalScore!'
   angular.extend($scope,canvasFuncs)
+  var socket = io();
+  var pathother;
+  socket.on('start',function(loc){
+    pathother = new paper.Path();
+    pathother.strokeColor = 'red';
+    pathother.strokeWidth = 10;
+    pathother.add(new paper.Point(new Point(loc[1],loc[2])));
+    paper.view.draw()
+  })
+  socket.on('drag',function(loc){
+    // console.log('loc:', loc)
+    pathother.add(new paper.Point(new Point(loc[1],loc[2])));
+    pathother.smooth();
+    paper.view.draw()
+  })
   function initPaper() {
     paper.install(window);
     paper.setup('myCanvas');
@@ -46,6 +61,7 @@ angular.module('ct-draw',[
     function onMouseMove(event) {
       console.log(raster.getAverageColor().toString())
       path.fillColor = raster.getAverageColor(event.point);
+      $scope.fillcolor = raster.getAverageColor(event.point);
       $scope.finalScore = raster.getAverageColor().toString()
       $scope.$apply();
     }
@@ -66,15 +82,19 @@ angular.module('ct-draw',[
   obj.mouseDrag = function (event) {
     if (drag) {
       // add web socket here to send event 
-        path.add(new paper.Point(event.point));
-        path.smooth();
+      var socket = io();
+      socket.emit('pointer',event.point)
+      path.add(new paper.Point(event.point));
+      path.smooth();
     }
   };
 
   obj.mouseDown = function(event) {
     drag = true;
+    var socket = io();
+    socket.emit('start',event.point)
     path = new paper.Path();
-    path.strokeColor = 'black';
+    path.strokeColor = 'blue';
     path.strokeWidth = 10;
     path.add(new paper.Point(event.point));
   };

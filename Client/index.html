@@ -2,6 +2,7 @@
 <html ng-app='ct-draw'>
 <head>
 <link rel="stylesheet" type="text/css" href="styles/styles.css">
+<script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="bower_components/paper/dist/paper-full.js"></script>
 <script type="text/javascript" src="canvas.js"></script>
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -10,10 +11,11 @@
 <!-- Define inlined PaperScript associate it with myCanvas -->
 </head>
 <body ng-controller='stats'>
-	<h1> hi </h1>
+	<h1>Draw Together!</h1>
 	<!-- <canvas id="myCanvas"  draw></canvas> -->
 	<!-- <draw > </draw> -->
 	<canvas id="myCanvas" ></canvas>
+	<!-- <canvas id="notMyCanvas" ></canvas> -->
 	<img ng-hide='true' id='cat' src='pics/cat1.gif'>
 	<div ng-click='startDrawing()'>Draw!</div>
 	<div ng-click='deactivate()'>Stop drawing</div>
@@ -23,6 +25,9 @@
 	</div>
 	<div>
 		final Score: {{finalScore}}
+	</div>
+	<div>
+		final Score: {{fillcolor}}
 	</div>
 </body>
 </html>
