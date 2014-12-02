@@ -10,35 +10,42 @@ angular.module('ct-draw',[
 //         controller:
 //       })
 // })
-.controller('stats', function ($scope, $document, canvasFuncs){
+.controller('stats', function ($scope, $document, canvasFuncs, paperFac){
   var path;
   // { red: 0.96558, green: 0.96558, blue: 0.96558 }
   $scope.score = 0; 
   $scope.baseColor= '...Calculating Score'
   $scope.finalScore='...finalScore!'
+  console.log(paperFac);
   angular.extend($scope,canvasFuncs)
   var socket = io();
   var pathother;
   socket.on('start',function(loc){
+    paper = paperFac.notMyPaper;
     pathother = new paper.Path();
     pathother.strokeColor = 'red';
     pathother.strokeWidth = 10;
-    pathother.add(new paper.Point(new Point(loc[1],loc[2])));
+    pathother.add(new paper.Point(new paper.Point(loc[1],loc[2])));
     paper.view.draw()
+    paper = paperFac.myPaper;
   })
   socket.on('drag',function(loc){
     // console.log('loc:', loc)
-    pathother.add(new paper.Point(new Point(loc[1],loc[2])));
+    paper = paperFac.notMyPaper;
+
+    pathother.add(new paper.Point(new paper.Point(loc[1],loc[2])));
     pathother.smooth();
     paper.view.draw()
+    paper = paperFac.myPaper;
   })
   function initPaper() {
-    paper.install(window);
-    paper.setup('myCanvas');
-    var r = new Raster('cat')
-    r.position = view.center;
+    // paper.install(window);
+    // paper.setup('myCanvas');
+    paper = paperFac.myPaper;
+    var r = new paper.Raster('cat')
+    r.position = paper.view.center;
     r.on('load',function(){
-      r.size = new Size(600,400)
+      r.size = new paper.Size(600,400)
       $scope.baseColor = r.getAverageColor().toString()
       $scope.$apply()
     })
@@ -46,7 +53,7 @@ angular.module('ct-draw',[
 
   $scope.deactivate =function (){
     console.log('deactivating!')
-    var tool = new Tool();
+    var tool = new paper.Tool();
     tool.activate();
   };
   $scope.inspect = function (){
@@ -65,7 +72,7 @@ angular.module('ct-draw',[
       $scope.finalScore = raster.getAverageColor().toString()
       $scope.$apply();
     }
-    var tool = new Tool();
+    var tool = new paper.Tool();
     tool.onMouseMove = onMouseMove;
     tool.activate();
   };
@@ -101,7 +108,7 @@ angular.module('ct-draw',[
 
   obj.startDrawing = function (){
     console.log('drawTime!')
-    var tool = new Tool(); 
+    var tool = new paper.Tool(); 
     tool.onMouseDown = obj.mouseDown;
     tool.onMouseDrag = obj.mouseDrag;
     tool.onMouseup = obj.mouseUp;
@@ -109,4 +116,15 @@ angular.module('ct-draw',[
   };
 
   return obj;
+})
+.factory('paperFac',function (){
+  var papers = {};
+  papers.myPaper = new paper.PaperScope();
+  papers.notMyPaper = new paper.PaperScope();
+
+  papers.myPaper.setup('myCanvas');
+  papers.notMyPaper.setup('notMyCanvas');
+
+  return papers;
+
 })
