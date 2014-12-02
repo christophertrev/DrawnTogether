@@ -32,7 +32,7 @@ angular.module('ct-draw',[
     drag = true;
     path = new paper.Path();
     path.strokeColor = 'black';
-    path.strokeWidth = 5;
+    path.strokeWidth = 10;
     path.add(new paper.Point(event.point));
   }
 
@@ -44,7 +44,7 @@ angular.module('ct-draw',[
     r.position = view.center;
     r.on('load',function(){
       
-    r.size = new Size(300,200)
+    r.size = new Size(600,400)
     $scope.baseColor = r.getAverageColor().toString()
     $scope.$apply()
     })
