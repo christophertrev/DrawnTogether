@@ -22,7 +22,7 @@
         </div>
         <!-- <div class='navbar-collapse collapse'> -->
           <ul class='nav navbar-nav '>
-           <li><h1 class='navbar-text'>Draw Together!</h1> </li>
+           <li><h1 class='navbar-text'>Drawn Together!</h1> </li>
           </ul>
         <!-- </div> -->
       </div>
@@ -30,15 +30,18 @@
 	<!-- <h1>Draw Together!</h1> -->
 	<!-- <canvas id="myCanvas"  draw></canvas> -->
 	<!-- <draw > </draw> -->
-	
+	<div ng-show='oppReady' class='page-header'>
+	<h1>Opponent is Ready</h1>
+	<h1 ng-show='go'>Start!</h1>
+	</div>
 	<canvas id="myCanvas" ></canvas>
 	<canvas id="notMyCanvas" ></canvas>
 	<img ng-hide='true' id='cat' src='pics/cat1.gif'>
 <!-- 	<img class='brand' src='pics/truthbomb.gif'> -->
 	<div class='row'>
 	<div class='btn-group btn-group-lg col-xs-offset-4'>
-	  <button  class='btn btn-danger' ng-disabled='!ready' ng-click='sendReady()'>Ready?</button>
-	  <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button>
+	  <button  class='btn btn-danger' ng-disabled='ready' ng-click='sendReady()'>Ready?</button>
+	  <!-- <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button> -->
 	</div>
 	</div>
 	<div ng-click='startDrawing()'>Draw!</div>

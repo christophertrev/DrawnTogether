@@ -18,6 +18,9 @@ io.on('connection',function (socket){
     console.log('start: ',loc)
     socket.broadcast.emit('start', loc)
   })
+  socket.on('ready!',function (loc) {
+     socket.broadcast.emit('oppReady!', loc);
+  })
 })
 
 

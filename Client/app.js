@@ -14,15 +14,18 @@ angular.module('ct-draw',[
   var path;
   // { red: 0.96558, green: 0.96558, blue: 0.96558 }
   $scope.score = 0; 
-  $scope.ready = true;
+  $scope.ready = false;
   $scope.ableStart = false;
   $scope.baseColor= '...Calculating Score'
   $scope.finalScore='...finalScore!'
+  $scope.oppReady = false; 
+  $scope.go = false;
   console.log(paperFac);
   angular.extend($scope,canvasFuncs)
   angular.extend($scope,gameMech)
   var socket = io();
   var pathother;
+
   socket.on('start',function(loc){
     paper = paperFac.notMyPaper;
     pathother = new paper.Path();
@@ -32,6 +35,7 @@ angular.module('ct-draw',[
     paper.view.draw()
     paper = paperFac.myPaper;
   })
+
   socket.on('drag',function(loc){
     paper = paperFac.notMyPaper;
     pathother.add(new paper.Point(new paper.Point(loc[1],loc[2])));
@@ -39,16 +43,24 @@ angular.module('ct-draw',[
     paper.view.draw()
     paper = paperFac.myPaper;
   })
-  socket.on('ready!', function (stuff) { 
+
+  socket.on('oppReady!', function (stuff) { 
     //make start available
-    $scope.ableStart = true;
+    console.log('rady?')
+    $scope.oppReady = true; 
+    if( $scope.ready ){
+      $scope.ableStart = true;
+      $scope.go = true;
+      $scope.startGame();
+    }
+    $scope.$apply();
   })
   function initPaper() {
     paper = paperFac.myPaper;
   }
   $scope.startGame = function (){
     console.log('starting game');
-    $scope.timer =  30; 
+    $scope.timer =  60; 
     var intID = $interval(function (){
       $scope.startDrawing()
       $scope.timer--;
@@ -83,7 +95,14 @@ angular.module('ct-draw',[
   };
   
   $scope.sendReady = function () {
+    $scope.ready = true
     socket.emit('ready!',event.point)
+    if($scope.oppReady){
+      $scope.ableStart = true;
+      $scope.go = true; 
+      $scope.startGame();
+      // $scope.apply();
+    }  
   }
 
   initPaper();
@@ -113,15 +132,6 @@ angular.module('ct-draw',[
     path.strokeWidth = 10;
     path.add(new paper.Point(event.point));
   };
-
-  // obj.startDrawing = function (){
-  //   console.log('drawTime!')
-  //   var tool = new paper.Tool(); 
-  //   tool.onMouseDown = obj.mouseDown;
-  //   tool.onMouseDrag = obj.mouseDrag;
-  //   tool.onMouseup = obj.mouseUp;
-  //   tool.activate(); 
-  // };
 
   return obj;
 })
