@@ -9,6 +9,8 @@ app.set('port', (process.env.PORT || 3000))
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../Client'));
 
+io.set('transports','xhr-polling');
+
 io.on('connection',function (socket){
   socket.on('pointer',function(loc){
     // console.log('locaation ', loc);
