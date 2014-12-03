@@ -29,3 +29,17 @@ img {
    margin-top: -(Y/2)u;
 }
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 70%;*/
+    text-align: center;
+    /*background-color: #b0e0e6;*/
+}
+
+div.width {
+	width: 50%;
+}
+button.width {
+  width : 100%;
+}

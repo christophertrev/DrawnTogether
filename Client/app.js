@@ -59,7 +59,7 @@ angular.module('ct-draw',[
   }
   $scope.startGame = function (){
     console.log('starting countdown');
-    $scope.timer =  60; 
+    $scope.timer = 15; 
     $scope.st = 3;
     var intSt = $interval( function () {
       $scope.st--
@@ -75,8 +75,7 @@ angular.module('ct-draw',[
             $interval.cancel(intID);
             $scope.deactivate();
           }
-        },100);       
-        
+        },1000);       
       }
     },1000)
   };
