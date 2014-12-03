@@ -1,8 +1,8 @@
-var express = require('express');
-var morgan = require('morgan')
+var express = require('../node_modules/express');
+var morgan = require('../node_modules/morgan')
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('../node_modules/socket.io')(http);
 
 app.set('port', (process.env.PORT || 3000))
 
