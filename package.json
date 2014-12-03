@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "author": "",
   "license": "ISC",
@@ -12,10 +13,7 @@
     "express": "^4.10.4",
     "socket.io": "^1.2.1",
     "morgan": "^1.5.0",
-    "bower": "0.6.x",
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "bower": "0.6.x"
   },
   "devDependencies": {
     "morgan": "^1.5.0"
