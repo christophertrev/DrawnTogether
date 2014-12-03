@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "bower cache && bower install"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +14,5 @@
     "socket.io": "^1.2.1",
     "morgan": "^1.5.0",
     "bower": "0.6.x"
-  },
-  "devDependencies": {
-    "morgan": "^1.5.0"
   }
 }
