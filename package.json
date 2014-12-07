@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "bower cache && bower install"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
