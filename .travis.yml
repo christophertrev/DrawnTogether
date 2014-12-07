@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-- "0.10"
-- "0.8"
-- "0.6"
+- '0.10'
+- '0.8'
+- '0.6'
+deploy:
+  provider: heroku
+  api_key:
+    secure: T3D/xTE6+rrM0C3dgjU3dRTWFW9Zgfr7c+TnE+ftyi1TmGKRwG+Vk21pyz95eHgfsnbdSioUhLEIbZxdObUyLB75OusIhB5m5UYSOquhnuNsAkccpHpFitR6LqrlbFd871ft81z0m6shGtyclNcXwdLJNI+tiY9YJg/bF1znvTU=
+  app: fast-plateau-6652
+  on:
+    repo: christophertrev/solo
