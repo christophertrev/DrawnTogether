@@ -31,14 +31,14 @@ angular.module('ct-draw',[
     pathother = new paper.Path();
     pathother.strokeColor = 'red';
     pathother.strokeWidth = 10;
-    pathother.add(new paper.Point(new paper.Point(loc[1],loc[2])));
+    pathother.add(new paper.Point(new paper.Point(loc[1]/2,loc[2]/2)));
     paper.view.draw()
     paper = paperFac.myPaper;
   })
 
   socket.on('drag',function(loc){
     paper = paperFac.notMyPaper;
-    pathother.add(new paper.Point(new paper.Point(loc[1],loc[2])));
+    pathother.add(new paper.Point(new paper.Point(loc[1]/2,loc[2]/2)));
     pathother.smooth();
     paper.view.draw()
     paper = paperFac.myPaper;
@@ -79,6 +79,14 @@ angular.module('ct-draw',[
       }
     },1000)
   };
+
+  $scope.startSoloGame = function () {
+    $scope.startDrawing();
+  };
+
+  $scope.stopSoloGame = function () {
+    $scope.deactivate();
+  }
 
 
   $scope.inspect = function (){
@@ -156,7 +164,7 @@ angular.module('ct-draw',[
   var r = new paper.Raster('cat')
   r.position = paper.view.center;
   r.on('load',function(){
-    r.size = new paper.Size(500,300)
+    r.size = new paper.Size(900,550)
   })
   return papers;
 

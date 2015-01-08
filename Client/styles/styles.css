@@ -4,18 +4,29 @@ body {
 
 canvas {
   background-color: white;
-  /*background-image: url(../pics/cat1.gif)*/
   height: 300px;
   width: 500px;
   border-style: solid;
   border-color: grey;
+  margin-left: 10px
 }
 
 img {
   height: 400px;
   width: 600px;
+  display: none;
 }
 
+#myCanvas {
+  height: 550px;
+  width: 900px;
+}
+
+#notMyCanvas {
+  height: 300px;
+  width: 500px;
+  margin-bottom: 250px
+}
 .brand {
   height: 40px;
   width: 40px;

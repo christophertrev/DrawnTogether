@@ -33,17 +33,17 @@
 	  <h1 ng-show='!go && oppReady'> Start in {{st}}</h1>
 	  <h1 ng-show='go && oppReady'>Start!</h1>
 	</div>
-	<div class='center'>
+	<!-- <div class='center'> -->
 	<canvas id="myCanvas" ></canvas>
 	<canvas id="notMyCanvas" ></canvas>
-	<img ng-hide='true' id='cat' src='pics/cat.gif'>
+	<img id='cat' src='pics/cat.gif'>
 	<div class='row'>
 		<div class='btn-group btn-group-lg center width'>
-		  <button  class='btn btn-danger width' ng-disabled='ready' ng-click='sendReady()'>Ready?</button>
-		  <!-- <button class='btn btn-danger' ng-disabled='!ableStart' ng-click='startGame()'>START</button> -->
+		  <button  class='btn btn-danger' ng-disabled='ready' ng-click='sendReady()'>Ready?</button>
+		  <button class='btn btn-danger' ng-click='startSoloGame()'>Play Solo?</button>
 		</div>
 	</div>
-	</div>
+	<!-- </div> -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
